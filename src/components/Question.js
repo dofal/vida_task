@@ -10,7 +10,8 @@ import { HiOutlineClipboardCheck, HiArrowRight } from "react-icons/hi"
 const Question = (props) => {
   const [score, setScore] = useState(0);
   const [currentQuestion, setcurrentQuestion] = useState(0)
-  const [correctanswer, setCorrectanswer] = useState("")
+  const [correctanswer, setCorrectanswer] = useState(false)
+  const [scorewatch, SetScoreWatch] = useState(true)
   const questions = [
     {
       name: hlinik,
@@ -87,11 +88,13 @@ const Question = (props) => {
         
   ]
   const optionClicked = (isTrue) => {
-    if( isTrue ){
+    
+    if( isTrue && scorewatch ){
       setScore(score + 1);
       setCorrectanswer(true)
+      SetScoreWatch(false)
     } else{
-
+      SetScoreWatch(false)
     }
 
     console.log(score);
@@ -99,6 +102,8 @@ const Question = (props) => {
   const nextQuestion = () => {
     if (currentQuestion < 5){
       setcurrentQuestion(currentQuestion + 1);
+      SetScoreWatch(true)
+      setCorrectanswer(false)
     }else{
       setcurrentQuestion(5);
       props.SetFinalResult(score)
@@ -113,19 +118,20 @@ const Question = (props) => {
         </div>
             <div className='flex gap-1 rounded font-medium justify-center items-center w-20 h-10  bg-slate-200' id='question_counter'> <HiOutlineClipboardCheck size={26} /> {currentQuestion + 1}/6</div>
         </div>
-        <div id='answers' className='flex justify-center items-center gap-8'>
+        <div id='answers' className='flex justify-center items-center gap-14'>
             <div className='h-[380px] flex items-center'><img className='' width="380px" height="380px"  src={questions[currentQuestion].name}></img></div>
             <div className="w-1/3 flex justify-center items-center">
-              <ul className='flex flex-col gap-5 text-lg font-semibold'>
+              <ul className='flex flex-col gap-4 text-lg font-semibold'>
+                <h2 className="-mb-2 -ml-3 text-lg">Vyberte správnou odpoveď:</h2>
                 {questions[currentQuestion].options.map((option) => {
                   return(
-                    <li onClick={() => optionClicked(option.isTrue)} className={correctanswer ? "bg-green-300 text-center drop-shadow px-28 rounded py-2" : "bg-slate-200 text-center drop-shadow px-28 easy duration-1000 rounded py-2"} key={option.id}> {option.name} </li>
+                    <li onClick={() => optionClicked(option.isTrue)} className={correctanswer ? "bg-green-300 hover:-translate-y-1 hover:scale-105 transition ease-in-out duration-300 text-center drop-shadow px-28 rounded py-2" : "bg-slate-200 hover:-translate-y-1 hover:scale-105 transition ease-in-out text-center px-28 easy duration-300 rounded py-2"} key={option.id}> {option.name} </li>
                   );
                 })}
               </ul>
             </div>
         </div>
-        <button onClick={() => nextQuestion()} className="flex gap-2 justify-center items-center py-3 px-1 rounded-lg text-md font-bold text-white bg-violet-600">Další otázka<HiArrowRight size={28} /></button>
+        <button onClick={() => nextQuestion()} className="flex gap-2 hover:translate-y-1 hover:scale-105 transition ease-in-out duration-300 justify-center items-center py-3  rounded-lg text-md font-bold text-white bg-violet-600">Další otázka<HiArrowRight size={28} /></button>
     </div>
   )
 }
