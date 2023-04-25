@@ -10,7 +10,7 @@ function App() {
   if (ScoreView){
     return (
       <div className="flex justify-center items-center" id='main'>
-        <div className='bg-white rounded-xl min-w-[65vw] min-h-[80vh] p-14'>
+        <div className='bg-white min-w-[65vw] min-h-[80vh] p-8 md:p-14 rounded-xl'>
           <Results FinalResult={FinalResult}/>
   
         </div>
@@ -19,7 +19,7 @@ function App() {
   }else{
     return (
       <div className="flex justify-center items-center" id='main'>
-        <div className='bg-white rounded-xl min-w-[65vw] min-h-[80vh] p-14'>
+        <div className='bg-white min-w-[65vw] min-h-[80vh] p-8 md:p-14 rounded-xl'>
           <Question SetScoreView={SetScoreView} SetFinalResult={SetFinalResult}/>
   
   

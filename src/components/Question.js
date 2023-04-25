@@ -119,14 +119,14 @@ const Question = (props) => {
   }
   return (
     <div className='flex flex-col gap-8'>
-        <div className='flex px-4 items-center justify-between'>
+        <div className='flex px-1 items-center justify-between md:px-4'>
         <div id='question'>
             <h2 className="pt-3 text-3xl font-black">Co je to za kov?</h2>
         </div>
             <div className='flex gap-1 rounded font-medium justify-center items-center w-20 h-10  bg-slate-200' id='question_counter'> <HiOutlineClipboardCheck size={26} /> {currentQuestion + 1}/6</div>
         </div>
-        <div id='answers' className='flex justify-center items-center gap-14'>
-            <div className='h-[380px] flex items-center'><img className='' width="380px" height="380px"  src={questions[currentQuestion].name}></img></div>
+        <div id='answers' className='flex flex-col justify-center items-center gap-0 md:flex-row gap-14'>
+            <div className='h-[380px] flex items-center'><img className=' ease-in-out duration-300' width="380px" height="380px"  src={questions[currentQuestion].name}></img></div>
             <div className="w-1/3 flex justify-center items-center">
               <div className={(correctanswer === 1) ? " flex flex-col animation-pulse p-20 rounded text-white text-lg bg-red-500" : "hidden"}><HiOutlineX size={130}/></div>
               <div className={(correctanswer === 2) ?  "flex flex-col p-20 rounded text-white font-semibold bg-green-400" : "hidden"}><HiCheck size={130}></HiCheck></div>
